@@ -76,7 +76,7 @@ fn main() -> HostResult<()> {
     };
     if matches.opt_present("h") {
         print!("{}", opts.usage("Usage: clamide [options]"));
-        panic!();
+        return Ok(())
     }
 
     let pid = if let Some(pid_or_name) = matches.opt_str("p") {
