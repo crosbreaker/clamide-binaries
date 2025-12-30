@@ -14,6 +14,7 @@ jobs:
       - name: Run build
         run: |
           set -x
+          sudo apt install cargo -y
           sudo cargo build --release #idk if sudo is needed
       - name: Upload to GitHub Release
         uses: softprops/action-gh-release@v2
