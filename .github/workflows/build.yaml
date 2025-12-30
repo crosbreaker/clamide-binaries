@@ -1,0 +1,24 @@
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download repo
+        uses: actions/checkout@v4
+
+      - name: Run build
+        run: |
+          set -x
+          sudo cargo build --release #idk if sudo is needed
+      - name: Upload to GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: build
+          files: target/release/clamide
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
